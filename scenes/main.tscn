@@ -1,0 +1,242 @@
+[gd_scene format=4 uid="uid://3xfgswplf41t"]
+
+[ext_resource type="Texture2D" uid="uid://ddhws8r534bav" path="res://sprites/Tileset1.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ccoh2hdo7kmju" path="res://scenes/player.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://vqgcd0j4d2k8" path="res://scripts/hex_agent.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ycdy4"]
+[ext_resource type="Script" uid="uid://d15nobs3uuxeb" path="res://addons/postfx/nodes/PostFX.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://bvbw3ejkm2bck" path="res://addons/postfx/scripts/FXBase.gd" id="5_272bh"]
+[ext_resource type="Script" uid="uid://va41qp3y05b7" path="res://scripts/player_hp.gd" id="7_4c57u"]
+[ext_resource type="Script" uid="uid://cxmv3xcq03vpc" path="res://scripts/coin_spawner.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://du6v6ky7rvrv" path="res://world_generator.gd" id="9_kek77"]
+[ext_resource type="Script" uid="uid://cqqc7s7kp8uem" path="res://addons/postfx/effects/VignetteFX.gd" id="11_dp3eg"]
+[ext_resource type="Script" uid="uid://cqfpvb86xejgj" path="res://scripts/ghost_spawner.gd" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://bxsk7uywkd145" path="res://addons/postfx/effects/ChromaticAberrationFX.gd" id="12_gqmmt"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_vivmo"]
+[ext_resource type="AudioStream" uid="uid://d1fxwqvpcbmc" path="res://music/glaceir.mp3" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://c55cn768s6yhb" path="res://scripts/game_hud.gd" id="15_vivmo"]
+[ext_resource type="FontFile" uid="uid://dxvpli4vlji5p" path="res://fonts/yummy-nickels.ttf" id="16_jbj1t"]
+[ext_resource type="Script" uid="uid://bbeuflsby2pv" path="res://scenes/fade_rect.gd" id="17_muem4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
+texture = ExtResource("1_ig7tw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h2yge"]
+tile_shape = 3
+tile_layout = 5
+tile_size = Vector2i(32, 24)
+sources/0 = SubResource("TileSetAtlasSource_0xm2m")
+
+[sub_resource type="Resource" id="Resource_2cqfq"]
+script = ExtResource("13_vivmo")
+transition = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_muem4"]
+font = ExtResource("16_jbj1t")
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="Resource" id="Resource_0ld40"]
+script = ExtResource("11_dp3eg")
+intensity = 3.0
+metadata/_custom_type_script = "uid://cqqc7s7kp8uem"
+
+[sub_resource type="Resource" id="Resource_gqmmt"]
+script = ExtResource("11_dp3eg")
+metadata/_custom_type_script = "uid://cqqc7s7kp8uem"
+
+[sub_resource type="Resource" id="Resource_yc10j"]
+script = ExtResource("12_gqmmt")
+metadata/_custom_type_script = "uid://bxsk7uywkd145"
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 3
+background_energy_multiplier = 1.2
+ssao_radius = 4.8
+ssao_intensity = 10.58
+glow_enabled = true
+glow_intensity = 1.3
+glow_bloom = 1.0
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 10.07
+fog_height = 1013.44
+adjustment_brightness = 0.46
+
+[node name="Main" type="Node2D" unique_id=1243900400]
+
+[node name="TileMap" type="TileMapLayer" parent="." unique_id=600326375]
+modulate = Color(0.26666668, 0.03137255, 0.05882353, 1)
+tile_map_data = PackedByteArray("AAD8/wIAAAAAAAQAAAD9/wEAAAAAAAQAAAD9/wIAAAAAAAQAAAD+/wEAAAAAAAQAAAD//wEAAAAAAAQAAAAAAAEAAAAAAAQAAAABAAEAAAAAAAQAAAACAAAAAAAAAAQAAAADAAAAAAAAAAQAAAAEAP//AAAAAAQAAAAFAP//AAAAAAQAAAACAAEAAAAAAAQAAAABAAAAAAAAAAQAAAACAP//AAAAAAQAAAABAP//AAAAAAQAAAAAAAAAAAAAAAQAAAD//wAAAAAAAAQAAAAAAP//AAAAAAQAAAAAAP7/AAAAAAQAAAAAAP3/AAAAAAQAAAD///7/AAAAAAQAAAD+////AAAAAAQAAAD9////AAAAAAQAAAD8/wAAAAAAAAQAAAD7/wEAAAAAAAQAAAD6/wIAAAAAAAQAAAD6/wMAAAAAAAQAAAD7/wMAAAAAAAQAAAD8/wMAAAAAAAQAAAD9/wMAAAAAAAQAAAD+/wMAAAAAAAQAAAAAAAIAAAAAAAQAAAAEAAAAAAAAAAQAAAD8/wEAAAAAAAQAAAD7/wIAAAAAAAQAAAADAP7/AAAAAAQAAAACAP7/AAAAAAQAAAD/////AAAAAAQAAAD+/wAAAAAAAAQAAAD9/wAAAAAAAAQAAAD+/wIAAAAAAAQAAAADAP//AAAAAAQAAAABAP7/AAAAAAQAAAABAP3/AAAAAAQAAAAEAPv/AAAAAAQAAAAEAPr/AAAAAAQAAAAFAPn/AAAAAAQAAAAGAPn/AAAAAAQAAAAHAPj/AAAAAAQAAAAHAPn/AAAAAAQAAAD+/w8AAAAAAAQAAAD+/xAAAAAAAAQAAAD//xAAAAAAAAQAAAAAABAAAAAAAAQAAAABAA8AAAAAAAQAAAACAA4AAAAAAAQAAAADAA0AAAAAAAQAAAAEAAwAAAAAAAQAAAAFAAsAAAAAAAQAAAAGAAoAAAAAAAQAAAAGAAkAAAAAAAQAAAAHAAgAAAAAAAQAAAAIAAcAAAAAAAQAAAAHAAcAAAAAAAQAAAAGAAcAAAAAAAQAAAAFAAgAAAAAAAQAAAAEAAgAAAAAAAQAAAADAAkAAAAAAAQAAAACAAkAAAAAAAQAAAABAAkAAAAAAAQAAAAAAAkAAAAAAAQAAAABAAgAAAAAAAQAAAACAAcAAAAAAAQAAAADAAYAAAAAAAQAAAAEAAUAAAAAAAQAAAAFAAUAAAAAAAQAAAAGAAUAAAAAAAQAAAAHAAQAAAAAAAQAAAAGAAQAAAAAAAQAAAAFAAQAAAAAAAQAAAADAAUAAAAAAAQAAAACAAYAAAAAAAQAAAABAAYAAAAAAAQAAAAAAAcAAAAAAAQAAAACAAUAAAAAAAQAAAAEAAQAAAAAAAQAAAAFAAMAAAAAAAQAAAAGAAIAAAAAAAQAAAAHAAEAAAAAAAQAAAAIAAAAAAAAAAQAAAAHAAAAAAAAAAQAAAAGAAAAAAAAAAQAAAAFAAAAAAAAAAQAAAABAAIAAAAAAAQAAAACAAIAAAAAAAQAAAADAAEAAAAAAAQAAAAEAAEAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_h2yge")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=629564896]
+physics_interpolation_mode = 1
+top_level = true
+zoom = Vector2(3, 3)
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=2020190080]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_ycdy4")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera2D" type="Node2D" parent="Camera2D" unique_id=635334672 node_paths=PackedStringArray("follow_target")]
+top_level = true
+script = ExtResource("12_w48qg")
+follow_mode = 2
+follow_target = NodePath("../../Player")
+zoom = Vector2(3, 3)
+snap_to_pixel = true
+tween_resource = SubResource("Resource_2cqfq")
+follow_damping = true
+follow_damping_value = Vector2(1, 1)
+draw_limits = true
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Player" parent="." unique_id=1830941030 instance=ExtResource("2_1bvp3")]
+
+[node name="HexAgent" type="Node2D" parent="Player" unique_id=41147627 node_paths=PackedStringArray("tileMap", "enemy_spawner", "coin_spawner", "player_hp", "walk_sound")]
+script = ExtResource("2_h2yge")
+tileMap = NodePath("../../TileMap")
+path_preview_color = Color(1, 0, 0, 0.8)
+enemy_spawner = NodePath("../../GhostSpawner")
+coin_spawner = NodePath("../../CoinSpawner")
+player_hp = NodePath("../HP")
+walk_sound = NodePath("../WalkSound")
+
+[node name="HP" type="Node2D" parent="Player" unique_id=852612027 node_paths=PackedStringArray("hurt_sound")]
+script = ExtResource("7_4c57u")
+hurt_sound = NodePath("../HurtSound")
+
+[node name="GameHUD" type="Control" parent="." unique_id=1486935096 node_paths=PackedStringArray("player_hp_node", "coin_spawner", "bgm_sfx", "camera", "score_label", "hp_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("15_vivmo")
+player_hp_node = NodePath("../Player/HP")
+coin_spawner = NodePath("../CoinSpawner")
+bgm_sfx = NodePath("../BGM")
+win_coin_count = 99
+camera = NodePath("../Camera2D")
+score_label = NodePath("Control/ScoreLabel")
+hp_label = NodePath("Control/HPLabel")
+
+[node name="Control" type="Control" parent="GameHUD" unique_id=1903504032]
+z_index = 99
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="GameHUD/Control" unique_id=377370475]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 81.0
+offset_right = 149.0
+offset_bottom = 104.0
+text = "Coins"
+label_settings = SubResource("LabelSettings_muem4")
+
+[node name="HPLabel" type="Label" parent="GameHUD/Control" unique_id=1074834596]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 109.0
+offset_right = 149.0
+offset_bottom = 132.0
+text = "Coins"
+label_settings = SubResource("LabelSettings_muem4")
+
+[node name="PostFX" type="CanvasLayer" parent="." unique_id=1712152456]
+layer = 99
+follow_viewport_enabled = true
+script = ExtResource("4_7mycd")
+effects = Array[ExtResource("5_272bh")]([SubResource("Resource_0ld40"), SubResource("Resource_gqmmt"), SubResource("Resource_yc10j")])
+metadata/_custom_type_script = "uid://d15nobs3uuxeb"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=811258802]
+environment = SubResource("Environment_h2yge")
+
+[node name="CoinSpawner" type="Node2D" parent="." unique_id=1306791806 node_paths=PackedStringArray("tileMap", "player", "map_generator", "coin_sound")]
+script = ExtResource("8_5vw27")
+tileMap = NodePath("../TileMap")
+player = NodePath("../Player")
+map_generator = NodePath("../GhostSpawner")
+initial_coin_count = 300
+max_distance_from_player = 20
+coin_respawn_delay = 10.0
+coin_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+coin_size = 6
+coin_sound = NodePath("../Player/CoinSound")
+
+[node name="WorldGenerator" type="Node2D" parent="." unique_id=1447325895 node_paths=PackedStringArray("tileMap", "player")]
+script = ExtResource("9_kek77")
+tileMap = NodePath("../TileMap")
+player = NodePath("../Player")
+
+[node name="GhostSpawner" type="Node2D" parent="." unique_id=1946416400 node_paths=PackedStringArray("tileMap", "player", "map_generator")]
+script = ExtResource("12_dg77c")
+tileMap = NodePath("../TileMap")
+player = NodePath("../Player")
+map_generator = NodePath("../TileMap")
+chase_interval = 0.2
+chase_stop_distance = 5
+distortion_enabled = false
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1594142943]
+stream = ExtResource("14_w48qg")
+pitch_scale = 0.74
+autoplay = true
+parameters/looping = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2098866953]
+visible = false
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer" unique_id=450444549]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+script = ExtResource("17_muem4")
+
+[editable path="Player"]

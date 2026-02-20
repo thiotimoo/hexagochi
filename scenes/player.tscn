@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ccoh2hdo7kmju"]
+
+[ext_resource type="AudioStream" uid="uid://drb7xx8vgtg85" path="res://sfx/snd_board_splash.wav" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://b0p7vv3u8hnvw" path="res://sprites/miko-pixel.png" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://b5psjmpiqfrwq" path="res://sfx/snd_board_playerhurt.wav" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://ccowvfqb356yy" path="res://sfx/snd_board_shine_get.wav" id="4_qlg0r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 3.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1830941030 groups=["Player"]]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1298887633]
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2083477711]
+sprite_frames = SubResource("SpriteFrames_kek77")
+autoplay = "default"
+frame_progress = 0.75453424
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1663043657]
+stream = ExtResource("2_i3pqv")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1999655011]
+stream = ExtResource("3_dqkch")
+
+[node name="CoinSound" type="AudioStreamPlayer2D" parent="." unique_id=1010885975]
+stream = ExtResource("4_qlg0r")

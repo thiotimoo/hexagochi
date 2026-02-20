@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ddgxrxkbb753a"]
+
+[ext_resource type="Script" uid="uid://drpjviatr16ut" path="res://scenes/delay.gd" id="1_nct1h"]
+
+[node name="Delay" type="Node2D" unique_id=264757603]
+script = ExtResource("1_nct1h")
